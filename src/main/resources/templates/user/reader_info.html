@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        nav {
+            font-size: 1.5rem;
+            background-color: #21D4FD;
+            background-image: -webkit-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            background-image: -moz-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            background-image: -o-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+        }
+        h1 {
+            font-size: 2rem;
+            color: white;
+        }
+        li {
+            margin: 10px 20px;
+        }
+        th {
+            width: 100px;
+        }
+        label {
+            margin: auto;
+            padding-right: 20px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<!--导航栏替换-->
+<div th:replace="~{commons/commons :: topbar(active='index.html')}"></div>
+
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>姓名</th>
+            <td th:text="${reader.getName()}"></td>
+        </tr>
+        <tr>
+            <th>性别</th>
+            <td th:text="${reader.getSex()}"></td>
+        </tr>
+        <tr>
+            <th>生日</th>
+            <td th:text="${#dates.format(reader.getBirth(),'yyyy-MM-dd')}"></td>
+        </tr>
+        <tr>
+            <th>地址</th>
+            <td th:text="${reader.getAddress()}"></td>
+        </tr>
+        <tr>
+            <th>手机号</th>
+            <td th:text="${reader.getTelcode()}"></td>
+        </tr>
+    </table>
+    &nbsp;&nbsp;&nbsp;<a th:href="@{/index}" class="btn btn-outline-primary btn-lg">返&nbsp;&nbsp;&nbsp;&nbsp;回</a>
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

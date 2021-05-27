@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjh.mapper.ReaderMapper">
+    <select id="selectReaderByUsername" resultType="reader">
+        select * from  reader where username=#{username}
+    </select>
+
+    <select id="selectAllReader" resultType="reader">
+        select * from reader
+    </select>
+
+    <insert id="insertReader" parameterType="_int">
+        insert into ( insert into reader(username,password,name,sex,birth,address,telcode,state,role)
+        values(#{username},#{password},#{name},#{sex},#{birth},#{address},#{telcode},#{state},#{role}))
+    </insert>
+
+
+    <update id="updateReaderState" parameterType="map">
+        update reader set state = #{state} where readerId = #{readerId}
+    </update>
+
+    <update id="updateReader" parameterType="reader">
+        update reader
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="birth != null">
+                birth = #{birth},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="telcode != null">
+                telcode = #{telcode},
+            </if>
+            <if test="password != null">
+                password = #{password}
+            </if>
+        </set>
+        where username = #{username}
+    </update>
+
+    <select id="selectLike" parameterType="string" resultType="reader">
+        select * from reader
+        <where>
+            <if test="keyword != null">
+                username like #{keyword}
+            </if>
+            <if test="keyword != null">
+                or name like #{keyword}
+            </if>
+            <if test="keyword != null">
+                or sex like #{keyword}
+            </if>
+            <if test="keyword != null">
+                or address like #{keyword}
+            </if>
+        </where>
+    </select>
+
+</mapper>

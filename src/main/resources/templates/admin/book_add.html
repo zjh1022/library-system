@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        nav {
+            font-size: 1.5rem;
+            background-color: #21D4FD;
+            background-image: -webkit-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            background-image: -moz-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            background-image: -o-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+        }
+        h1 {
+            font-size: 2rem;
+            color: white;
+        }
+        li {
+            margin: 10px 20px;
+        }
+        th {
+            width: 100px;
+        }
+        label {
+            margin: auto;
+            padding-right: 20px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<!--导航栏替换-->
+<div th:replace="~{commons/commons :: topbar(active='books.html')}"></div>
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <form th:action="@{/admin/book/add}" method="post">
+        <div class="input-group">
+            <label for="name">书&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="input-group">
+            <label for="author">作&nbsp;&nbsp;&nbsp;&nbsp;者</label>
+            <input type="text" class="form-control" id="author" name="author" required>
+        </div>
+        <div class="input-group">
+            <label for="publish">出版社</label>
+            <input type="text" class="form-control" id="publish" name="publish" required>
+        </div>
+        <div class="input-group">
+            <label for="isbn">I&nbsp;S&nbsp;B&nbsp;N</label>
+            <input type="text" class="form-control" id="isbn" name="isbn" required>
+        </div>
+        <div class="input-group">
+            <label for="introduction">简&nbsp;&nbsp;&nbsp;&nbsp;介</label>
+            <textarea type="text" class="form-control" id="introduction" name="introduction" required></textarea>
+        </div>
+        <div class="input-group">
+            <label for="price">价&nbsp;&nbsp;&nbsp;&nbsp;格</label>
+            <input type="text" class="form-control" id="price" name="price" required>
+        </div>
+        <div class="input-group">
+            <label for="state" >状&nbsp;&nbsp;&nbsp;&nbsp;态</label>
+            <input type="text" class="form-control" id="state" name="state" required>
+        </div>
+        <input type="submit" value="提    交" class="btn btn-outline-primary btn-lg">
+        <a th:href="@{/admin/book/books}" class="btn btn-outline-secondary btn-lg" style="margin-left: 40px">取&nbsp;&nbsp;&nbsp;&nbsp;消</a>
+    </form>
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

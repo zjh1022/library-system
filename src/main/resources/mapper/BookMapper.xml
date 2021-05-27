@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjh.mapper.BookMapper">
+    <select id="selectAllBook" resultType="book">
+        select * from book
+    </select>
+
+    <insert id="insertBook" parameterType="book">
+        insert into book(name,author,publish,isbn,introduction,state,price)
+        values(#{name},#{author},#{publish},#{isbn},#{introduction},#{state},#{price})
+    </insert>
+
+    <update id="updateBook" parameterType="book">
+        update book
+        <set>
+            <if test="name!=null">
+                name =#{name },
+            </if>
+            <if test="author!=null">
+                author = #{author},
+            </if>
+            <if test="publish != null">
+                publish = #{publish},
+            </if>
+            <if test="isbn != null">
+                isbn = #{isbn},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="state != null">
+                state = #{state}
+            </if>
+        </set>
+        where bookId = #{bookId}
+    </update>
+
+    <select id="selectBookById" resultType="book">
+        select * from book where bookId = #{bookId}
+    </select>
+
+    <delete id="deleteBookById" parameterType="_int">
+        delete * from book where bookId=#{bookID}
+    </delete>
+
+
+    <select id="selectLike" parameterType="string" resultType="book">
+        select * from book
+        <where>
+            <if test="keyword != null">
+                bookId like #{keyword}
+            </if>
+            <if test="keyword != null">
+                or name like #{keyword}
+            </if>
+            <if test="keyword != null">
+                or author like #{keyword}
+            </if>
+            <if test="keyword != null">
+                or publish like #{keyword}
+            </if>
+        </where>
+    </select>
+</mapper>

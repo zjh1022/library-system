@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark" th:fragment="topbar">
+    <ul class="navbar-nav" shiro:hasPermission="admin">
+        <li>
+            <a th:class="${active=='index.html'? 'nav-link active' : 'nav-link'}" th:href="@{/index}" >图书管理系统</a>
+        </li>
+        <li class="nav-item">
+            <a th:class="${active=='books.html'? 'nav-link active' : 'nav-link'}" th:href="@{/admin/book/books}">图书管理</a>
+        </li>
+        <li class="nav-item">
+            <a th:class="${active=='readers.html'? 'nav-link active' : 'nav-link'}" th:href="@{/admin/reader/readers}">读者管理</a>
+        </li>
+        <li class="nav-item">
+            <a th:class="${active=='records.html'? 'nav-link active' : 'nav-link'}" th:href="@{/admin/record/records}">借还管理</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav" shiro:hasPermission="user">
+        <li>
+            <a th:class="${active=='index.html'? 'nav-link active' : 'nav-link'}" th:href="@{/index}">图书管理系统</a>
+        </li>
+        <li class="nav-item">
+            <a th:class="${active=='books.html'? 'nav-link active' : 'nav-link'}" th:href="@{/reader/book/books}">图书信息</a>
+        </li>
+        <li class="nav-item">
+            <a th:class="${active=='ownRecord.html'? 'nav-link active' : 'nav-link'}" th:href="@{'/reader/record/records/' + ${session.username}}">借阅记录</a>
+        </li>
+    </ul>
+    <div class="text-white" style="font-size: medium; position: absolute; bottom: 30px; right: 40px">
+        <div class="dropdown">
+            <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               th:text="${session.username}+', 您好'">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" th:href="@{'/reader/info/toReaderInfo/' + ${session.username}}" shiro:hasPermission="user">个人信息</a>
+                <a class="dropdown-item" th:href="${session.role=='user' ? '/reader/pwd/toChangePassword': '/admin/user/toChangePassword'} ">修改密码</a>
+                <a class="dropdown-item" th:href="@{/logout}">注销</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>
