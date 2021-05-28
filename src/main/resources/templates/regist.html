@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        nav {
+            font-size: 1.5rem;
+            background-color: #21D4FD;
+            background-image: -webkit-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            background-image: -moz-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            background-image: -o-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+        }
+        h1 {
+            font-size: 2rem;
+            color: white;
+        }
+        li {
+            margin: 10px 20px;
+        }
+        th {
+            width: 100px;
+        }
+        label {
+            margin: auto;
+            padding-right: 20px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 align="center" style="background-color: #005cbf">欢迎来到注册页面</h1>
+    </div>
+
+<div class="container" align="center">
+    <br>
+    <br>
+    <br>
+    <form th:action="@{/regist}" method="post" >
+        <div>
+            <span th:text="${msg}" style="background-color: red"></span>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="username">卡&nbsp;&nbsp;&nbsp;&nbsp;号</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="input-group"style="width: 400px">
+            <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+            <input type="text" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="name">姓&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="sex">性&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+            <input type="text" class="form-control" id="sex" name="sex" required>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="birth">生&nbsp;&nbsp;&nbsp;&nbsp;日</label>
+            <input type="text" class="form-control" id="birth" name="birth" required>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="address">地&nbsp;&nbsp;&nbsp;&nbsp;址</label>
+            <input type="text" class="form-control" id="address" name="address" required>
+        </div>
+        <div class="input-group" style="width: 400px">
+            <label for="telcode">手机号</label>
+            <input type="text" class="form-control" id="telcode" name="telcode" required>
+        </div>
+        <input type="hidden" name="state" value="0">
+        <input type="hidden" name="role" value="user">
+        <input type="submit" value="注    册" class="btn btn-outline-primary btn-lg">
+        <a th:href="@{/login}" class="btn btn-outline-secondary btn-lg" style="margin-left: 40px">取&nbsp;&nbsp;&nbsp;&nbsp;消</a>
+    </form>
+    <form th:action="@{/login}" method="post">
+        <input type="submit" a th:href="@{/login}" class="btn btn-link" value="已有账号？点击立即登录" style="float: right">
+    </form>
+
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

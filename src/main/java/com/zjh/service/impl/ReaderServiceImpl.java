@@ -28,7 +28,7 @@ public class ReaderServiceImpl implements ReaderService {
     }
 
     @Override
-    public Reader insertReader(Reader reader) {
+    public int insertReader(Reader reader) {
         return readerMapper.insertReader(reader);
     }
 

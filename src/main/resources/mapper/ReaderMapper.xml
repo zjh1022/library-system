@@ -11,9 +11,9 @@
         select * from reader
     </select>
 
-    <insert id="insertReader" parameterType="_int">
-        insert into ( insert into reader(username,password,name,sex,birth,address,telcode,state,role)
-        values(#{username},#{password},#{name},#{sex},#{birth},#{address},#{telcode},#{state},#{role}))
+    <insert id="insertReader" parameterType="reader">
+        insert into reader(username,password,name,sex,birth,address,telcode,state,role)
+        values(#{username},#{password},#{name},#{sex},#{birth},#{address},#{telcode},#{state},#{role})
     </insert>
 
 

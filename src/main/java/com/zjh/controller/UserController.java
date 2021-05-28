@@ -1,6 +1,8 @@
 package com.zjh.controller;
 
 
+import com.zjh.pojo.Reader;
+import com.zjh.service.ReaderService;
 import com.zjh.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,6 +28,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ReaderService readerService;
 
     @GetMapping("/toLogin")
     public String toLogin(){
@@ -64,5 +70,19 @@ public class UserController {
         return "login";
     }
 
+    //到达注册页面
+
+    @RequestMapping("/toRegist")
+    public String toRegist(){
+        return "regist";
+    }
+
+    //注册
+    @RequestMapping("/regist")
+    public String regist(Reader reader,Model model){
+        readerService.insertReader(reader);
+        model.addAttribute("msg","注册成功");
+        return "regist";
+    }
 
 }

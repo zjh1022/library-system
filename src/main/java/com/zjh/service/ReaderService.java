@@ -19,7 +19,7 @@ public interface ReaderService {
     List<Reader> selectAllReader();
 
     //插入读者信息
-    Reader insertReader(Reader reader);
+    int insertReader(Reader reader);
 
     //根据id更改读者状态
     int updateReaderState(@Param("readerId") int booKId, @Param("state") String state);
