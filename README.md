@@ -11,5 +11,5 @@
    
   ·maven：3.6.0
   
-  下载后记得到application.yml中修改成你自己数据库的密码。
-
+  注意点：下载后记得到application.yml中修改成你自己数据库的密码。
+	      
