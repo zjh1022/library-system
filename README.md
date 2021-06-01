@@ -11,13 +11,10 @@
    
   ·maven：3.6.0
   
-<<<<<<< HEAD
-  注意点：下载后记得到application.yml中修改成你自己数据库的密码。
-	      
-=======
+
  注意点： 下载后记得到application.yml中修改成你自己数据库的密码。
  
           pojo使用的是Lombok，需要先在idea中安装插件，再添加相关的依赖。
  
 
->>>>>>> 8dae1b1b3092b42036727e2e64ab7d7ffc13ea08
+
