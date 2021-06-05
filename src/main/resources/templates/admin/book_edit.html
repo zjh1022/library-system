@@ -16,20 +16,25 @@
             background-image: -o-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
             background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
         }
+
         h1 {
             font-size: 2rem;
             color: white;
         }
+
         li {
             margin: 10px 20px;
         }
+
         th {
             width: 100px;
         }
+
         label {
             margin: auto;
             padding-right: 20px;
         }
+
         .input-group {
             margin-bottom: 10px;
         }
@@ -63,7 +68,8 @@
         </div>
         <div class="input-group">
             <label for="introduction">简&nbsp;&nbsp;&nbsp;&nbsp;介</label>
-            <textarea class="form-control" id="introduction" name="introduction" th:text="${book.getIntroduction()}"></textarea>
+            <textarea class="form-control" id="introduction" name="introduction"
+                      th:text="${book.getIntroduction()}"></textarea>
         </div>
         <div class="input-group">
             <label for="price">价&nbsp;&nbsp;&nbsp;&nbsp;格</label>

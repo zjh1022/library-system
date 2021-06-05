@@ -8,6 +8,6 @@
     </select>
 
     <update id="updateUserByUsername" parameterType="user">
-        update user set password = #{password} where  username = #{username}
+        update user set password = #{password} where username = #{username}
     </update>
 </mapper>

@@ -22,7 +22,7 @@ public class ShiroConfig {
 
     //ShiroFilterFactoryBean:3
     @Bean
-    public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager getDefaultWebSecurityManager){
+    public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager getDefaultWebSecurityManager) {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         //设置安全管理器
         bean.setSecurityManager(getDefaultWebSecurityManager);
@@ -35,25 +35,25 @@ public class ShiroConfig {
         perms :拥有对某个资源的权限才能访问
         role:拥有某个角色权限才能访问
         */
-        Map<String,String> filterMap = new LinkedHashMap<>();
+        Map<String, String> filterMap = new LinkedHashMap<>();
         //拦截
-        filterMap.put("/index","user");
-        filterMap.put("/admin/**","authc");
-        filterMap.put("/user/**","authc");
+        filterMap.put("/index", "user");
+        filterMap.put("/admin/**", "authc");
+        filterMap.put("/user/**", "authc");
         bean.setFilterChainDefinitionMap(filterMap);
         //设置登录的请求
-         bean.setLoginUrl("/toLogin");
+        bean.setLoginUrl("/toLogin");
 
 
         //设置未授权页面
         bean.setUnauthorizedUrl("/404");
-       return bean;
+        return bean;
     }
 
 
     //DefaultWebSecurityManager:2
     @Bean(name = "securityManager")
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm){
+    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //关联userReaml
         securityManager.setRealm(userRealm());
@@ -63,19 +63,19 @@ public class ShiroConfig {
 
     //创建UserReaml对象，需要自定义类
     @Bean
-    public UserRealm userRealm(){
+    public UserRealm userRealm() {
         return new UserRealm();
     }
 
     //整合ShiroDialect : 用来整合shiro thymeleaf
     @Bean
-    public ShiroDialect getShiroDialect(){
+    public ShiroDialect getShiroDialect() {
         return new ShiroDialect();
     }
 
     //添加记住我功能
     @Bean
-    public SimpleCookie getSimpleCookie(){
+    public SimpleCookie getSimpleCookie() {
         SimpleCookie cookie = new SimpleCookie();
         cookie.setHttpOnly(true);
         cookie.setMaxAge(2592000);

@@ -33,12 +33,12 @@ public class UserController {
     ReaderService readerService;
 
     @GetMapping("/toLogin")
-    public String toLogin(){
+    public String toLogin() {
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(String username,String password,String remember,String role,Model model){
+    public String login(String username, String password, String remember, String role, Model model) {
         //获取subject
         Subject subject = SecurityUtils.getSubject();
         Session session = subject.getSession();
@@ -46,25 +46,26 @@ public class UserController {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         //执行登录的方法
         try {
-            if ("on".equals(remember)){
+            if ("on".equals(remember)) {
                 token.setRememberMe(true);
             }
-            session.setAttribute("role",role);
-            session.setAttribute("username",username);
+            session.setAttribute("role", role);
+            session.setAttribute("username", username);
             subject.login(token);
             return "index";
         } catch (UnknownAccountException e) {
-            model.addAttribute("msg","用户名不存在");
+            model.addAttribute("msg", "用户名不存在");
             return "login";
         } catch (IncorrectCredentialsException e) {
-            model.addAttribute("msg","密码不正确");
+            model.addAttribute("msg", "密码不正确");
             return "login";
         }
 
     }
+
     //注销
     @RequestMapping("/logout")
-    public String logout(){
+    public String logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         return "login";
@@ -73,15 +74,15 @@ public class UserController {
     //到达注册页面
 
     @RequestMapping("/toRegist")
-    public String toRegist(){
+    public String toRegist() {
         return "regist";
     }
 
     //注册
     @RequestMapping("/regist")
-    public String regist(Reader reader,Model model){
+    public String regist(Reader reader, Model model) {
         readerService.insertReader(reader);
-        model.addAttribute("msg","注册成功");
+        model.addAttribute("msg", "注册成功");
         return "regist";
     }
 

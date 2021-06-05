@@ -34,7 +34,7 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public int updateReaderState(int booKId, String state) {
-        return readerMapper.updateReaderState(booKId,state);
+        return readerMapper.updateReaderState(booKId, state);
     }
 
     @Override

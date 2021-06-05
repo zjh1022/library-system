@@ -16,13 +16,16 @@
             background-image: -o-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
             background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
         }
+
         h1 {
             font-size: 2rem;
             color: white;
         }
+
         li {
             margin: 10px 20px;
         }
+
         #searchBox {
             width: 300px;
             float: right;
@@ -44,7 +47,8 @@
     </ul>
     <div class="text-white" style="font-size: medium; position: absolute; bottom: 30px; right: 40px">
         <div class="dropdown">
-            <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false"
                th:text="${session.name}+', 您好'">
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -4,20 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zjh.mapper.RecordMapper">
     <insert id="insertRecord" parameterType="record">
-            insert into record(bookId,username,lendDate,backDate)
-            values(#{bookId},#{username},#{lendDate},#{backDate})
-        </insert>
+        insert into record(bookId,username,lendDate,backDate)
+        values(#{bookId},#{username},#{lendDate},#{backDate})
+    </insert>
 
     <select id="selectRecordByUsername" parameterType="string" resultType="record">
-            select * from record where username = #{username}
-        </select>
+        select * from record where username = #{username}
+    </select>
 
     <delete id="deleteReocrd" parameterType="_int">
-            delete from record where sernum = #{sernum}
-        </delete>
+        delete from record where sernum = #{sernum}
+    </delete>
 
     <select id="selectAllRecord" resultType="record">
-            select * from record
-        </select>
+        select * from record
+    </select>
 
 </mapper>

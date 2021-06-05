@@ -18,6 +18,7 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     BookMapper bookMapper;
+
     @Override
     public List<Book> selectAllBook() {
         return bookMapper.selectAllBook();

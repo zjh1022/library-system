@@ -16,37 +16,40 @@
             background-image: -o-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
             background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
         }
+
         h1 {
             font-size: 2rem;
         }
+
         li {
             margin: 10px 20px;
         }
+
         body {
-/*             background-image: url("../static/img/2.jpg"); */
+            /*             background-image: url("../static/img/2.jpg"); */
             background-size: cover;
         }
     </style>
 </head>
 <body>
 
-    <!--导航栏替换-->
-    <div th:replace="~{commons/commons :: topbar(active='index.html')}"></div>
+<!--导航栏替换-->
+<div th:replace="~{commons/commons :: topbar(active='index.html')}"></div>
 
-    <div class="card bg-light" style="margin: 150px 100px; width: 400px;">
-        <div class="card-header">
-            <h1>欢迎使用图书管理系统</h1>
-        </div>
-        <div class="card-body">
-            <p>
-                后端框架: SpringBoot <br>
-                HTML模板: ThymeLeaf <br>
-                持久层: Mybatis <br>
-                UI: Bootstrap <br>
-                登录验证和用户权限: Shiro
-            </p>
-        </div>
+<div class="card bg-light" style="margin: 150px 100px; width: 400px;">
+    <div class="card-header">
+        <h1>欢迎使用图书管理系统</h1>
     </div>
+    <div class="card-body">
+        <p>
+            后端框架: SpringBoot <br>
+            HTML模板: ThymeLeaf <br>
+            持久层: Mybatis <br>
+            UI: Bootstrap <br>
+            登录验证和用户权限: Shiro
+        </p>
+    </div>
+</div>
 
 
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>

@@ -16,13 +16,16 @@
             background-image: -o-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
             background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
         }
+
         h1 {
             font-size: 2rem;
             color: white;
         }
+
         li {
             margin: 10px 20px;
         }
+
         #searchBox {
             width: 300px;
             float: right;
@@ -72,10 +75,14 @@
                 <td th:case="1" style="color:red">挂失</td>
                 <td th:case="2" style="color:gray">停借</td>
             </div>
-            <td><a th:href="@{'/admin/reader/state/' + ${reader.getReaderId()} + '/0'}" class="btn btn-outline-success">恢复</a></td>
-            <td><a th:href="@{'/admin/reader/state/' + ${reader.getReaderId()} + '/1'}" class="btn btn-outline-danger">挂失</a></td>
-            <td><a th:href="@{'/admin/reader/state/' + ${reader.getReaderId()} + '/2'}" class="btn btn-outline-dark">停借</a></td>
-            <td><a th:href="@{'/admin/reader/toUpdateReader/' + ${reader.getUsername()}}" class="btn btn-outline-info">修改</a></td>
+            <td><a th:href="@{'/admin/reader/state/' + ${reader.getReaderId()} + '/0'}" class="btn btn-outline-success">恢复</a>
+            </td>
+            <td><a th:href="@{'/admin/reader/state/' + ${reader.getReaderId()} + '/1'}" class="btn btn-outline-danger">挂失</a>
+            </td>
+            <td><a th:href="@{'/admin/reader/state/' + ${reader.getReaderId()} + '/2'}"
+                   class="btn btn-outline-dark">停借</a></td>
+            <td><a th:href="@{'/admin/reader/toUpdateReader/' + ${reader.getUsername()}}" class="btn btn-outline-info">修改</a>
+            </td>
         </tr>
         </tbody>
     </table>

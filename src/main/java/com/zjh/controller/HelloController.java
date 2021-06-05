@@ -15,16 +15,16 @@ public class HelloController {
 
     @Autowired
     UserService userService;
+
     @RequestMapping("/")
-    public String hello(){
+    public String hello() {
         return "login";
     }
 
     @GetMapping("/index")
-    public String hello1(){
+    public String hello1() {
         return "index";
     }
-
 
 
 }

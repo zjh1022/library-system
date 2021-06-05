@@ -79,63 +79,61 @@ public class ReaderController {
             record.setBackDate(new Date(date.getTime() + days * 86400000));
             recordService.insertRecord(record);   //插入借阅记录
             bookService.updateBook(book);
-            return "redirect:/reader/record/records/"+username;
+            return "redirect:/reader/record/records/" + username;
         }
 
     }
 
     //借阅记录
     @RequestMapping("/reader/record/records/{username}")
-    public String records(@PathVariable("username") String username,Model model){
+    public String records(@PathVariable("username") String username, Model model) {
         List<Record> records = recordService.selectRecordByUsername(username);
-        model.addAttribute("records",records);
+        model.addAttribute("records", records);
         return "user/ownRecord";
     }
 
     //还书
     @RequestMapping("/reader/record/backBook/{sernum}/{bookId}/{username}")
-    public String backBook(@PathVariable("sernum") int sernum,@PathVariable("bookId") int bookId,@PathVariable("username") String username,Model model ){
+    public String backBook(@PathVariable("sernum") int sernum, @PathVariable("bookId") int bookId, @PathVariable("username") String username, Model model) {
         Book book = bookService.selectBookById(bookId);
         book.setState(1);  //状态设置为1，即为还书
         bookService.updateBook(book);
         recordService.delectRecord(sernum);  //删除借阅记录
-        return "redirect:/reader/record/records/"+username;
+        return "redirect:/reader/record/records/" + username;
     }
 
     //搜索图书信息
     @RequestMapping("/reader/book/searchBook")
-    public String searchBook(String keyword,Model model){
-        String key="%"+keyword+"%";
+    public String searchBook(String keyword, Model model) {
+        String key = "%" + keyword + "%";
         List<Book> books = bookService.selectLike(key);
-        model.addAttribute("books",books);
+        model.addAttribute("books", books);
         return "user/books";
     }
 
     //到达修改密码界面
     @RequestMapping("/reader/pwd/toChangePassword")
-    public String tochangePassword(){
+    public String tochangePassword() {
         return "user/password";
     }
 
 
-
-
     //修改密码
     @RequestMapping("/reader/pwd/changePassword/{username}")
-    public String changePassword(String checkPassword,@PathVariable("username")String username,Model model){
+    public String changePassword(String checkPassword, @PathVariable("username") String username, Model model) {
         Reader reader = readerService.selectReaderByUsername(username);
         reader.setPassword(checkPassword);
         readerService.updateReader(reader);
-        model.addAttribute("msg","密码修改成功");
+        model.addAttribute("msg", "密码修改成功");
         return "user/password";
 
     }
 
     //个人信息
     @RequestMapping("/reader/info/toReaderInfo/{username}")
-    public String toReaderInfo(@PathVariable("username") String username,Model model){
+    public String toReaderInfo(@PathVariable("username") String username, Model model) {
         Reader reader = readerService.selectReaderByUsername(username);
-        model.addAttribute("reader",reader);
+        model.addAttribute("reader", reader);
         return "user/reader_info";
     }
 

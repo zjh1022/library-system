@@ -25,6 +25,7 @@ public class UserRealm extends AuthorizingRealm {
 
     @Autowired
     ReaderService readerService;
+
     //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -33,12 +34,12 @@ public class UserRealm extends AuthorizingRealm {
         //拿到当前登录的对象
         Subject subject = SecurityUtils.getSubject();
         String role = (String) subject.getSession().getAttribute("role");
-        if ("admin".equals(role)){  //管理员
+        if ("admin".equals(role)) {  //管理员
             User currentUser = (User) subject.getPrincipal();//拿到当前对象
             //设置当前用户的权限
             info.addStringPermission(currentUser.getRole());
-        }else {   //学生
-            Reader currentReader = (Reader)subject.getPrincipal();
+        } else {   //学生
+            Reader currentReader = (Reader) subject.getPrincipal();
             info.addStringPermission(currentReader.getRole());
         }
         return info;
@@ -48,27 +49,27 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 
-        User user=null;
-        Reader reader=null;
+        User user = null;
+        Reader reader = null;
         Subject subject = SecurityUtils.getSubject();
         String role = (String) subject.getSession().getAttribute("role");
-        UsernamePasswordToken token = (UsernamePasswordToken)authenticationToken;
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         //通过数据库验证
-        if ("admin".equals(role)){ //管理员
-           user = userService.selectUserByUsername(token.getUsername());
-           if (user==null){
-               return null;  //抛出异常
-           }
-           //密码认证,shiro帮我们做
-            return new SimpleAuthenticationInfo(user,user.getPassword(),"");
-
-        }else { //学生
-           reader=readerService.selectReaderByUsername(token.getUsername());
-           if (reader==null){
-               return null;// 抛出异常
-           }
+        if ("admin".equals(role)) { //管理员
+            user = userService.selectUserByUsername(token.getUsername());
+            if (user == null) {
+                return null;  //抛出异常
+            }
             //密码认证,shiro帮我们做
-            return  new SimpleAuthenticationInfo(reader,reader.getPassword(),"");
+            return new SimpleAuthenticationInfo(user, user.getPassword(), "");
+
+        } else { //学生
+            reader = readerService.selectReaderByUsername(token.getUsername());
+            if (reader == null) {
+                return null;// 抛出异常
+            }
+            //密码认证,shiro帮我们做
+            return new SimpleAuthenticationInfo(reader, reader.getPassword(), "");
         }
     }
 }

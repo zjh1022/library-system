@@ -16,35 +16,40 @@
             background-image: -o-linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
             background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
         }
+
         h1 {
             font-size: 2rem;
             color: white;
         }
+
         li {
             margin: 10px 20px;
         }
+
         th {
             width: 100px;
         }
+
         label {
             margin: auto;
             padding-right: 20px;
         }
+
         .input-group {
             margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1 align="center" style="background-color: #005cbf">欢迎来到注册页面</h1>
-    </div>
+<div>
+    <h1 align="center" style="background-color: #005cbf">欢迎来到注册页面</h1>
+</div>
 
 <div class="container" align="center">
     <br>
     <br>
     <br>
-    <form th:action="@{/regist}" method="post" >
+    <form th:action="@{/regist}" method="post">
         <div>
             <span th:text="${msg}" style="background-color: red"></span>
         </div>
@@ -52,7 +57,7 @@
             <label for="username">卡&nbsp;&nbsp;&nbsp;&nbsp;号</label>
             <input type="text" class="form-control" id="username" name="username" required>
         </div>
-        <div class="input-group"style="width: 400px">
+        <div class="input-group" style="width: 400px">
             <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
             <input type="text" class="form-control" id="password" name="password" required>
         </div>

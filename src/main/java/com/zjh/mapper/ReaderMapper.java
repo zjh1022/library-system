@@ -25,7 +25,7 @@ public interface ReaderMapper {
     int insertReader(Reader reader);
 
     //根据id更改读者状态
-    int updateReaderState(@Param("readerId") int booKId,@Param("state") String state);
+    int updateReaderState(@Param("readerId") int booKId, @Param("state") String state);
 
     //更改读者信息
     Reader updateReader(Reader reader);
