@@ -48,4 +48,9 @@ public class BookServiceImpl implements BookService {
     public List<Book> selectLike(String keyword) {
         return bookMapper.selectLike(keyword);
     }
+
+    @Override
+    public int selectCount() {
+        return bookMapper.selectCount();
+    }
 }

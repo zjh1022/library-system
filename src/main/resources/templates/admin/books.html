@@ -69,8 +69,22 @@
             <td><a th:href="@{'/admin/book/toUpdate/' + ${book.getBookId()}}" class="btn btn-outline-info">编辑</a></td>
             <td><a th:href="@{'/admin/book/delete/' + ${book.getBookId()}}" class="btn btn-outline-danger">删除</a></td>
         </tr>
+
         </tbody>
+
     </table>
+    <ul class="pagination" style="margin-left: 300px">
+        <li ><a href="#" th:href="@{/admin/book/books}" class="page-item">首页</a></li>
+        <li class="active"><a href="#" th:href="@{/admin/book/books(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a></li>
+        <li class="page-item"><span th:text="当前第+${pageInfo.pageNum}+页"</span></li>
+        <li class="page-item"><span th:text="共+${pageInfo.pages}+页"</span></li>
+        <li class="page-item"><a href="#"
+                                 th:href="@{/admin/book/books(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a></li>
+
+        <li class="page-item"><a href="#" th:href="@{/admin/book/books(pageNum=${pageInfo.pages})}">尾页</a></li>
+    </ul>
+
+
 </div>
 
 

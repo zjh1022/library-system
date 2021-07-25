@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjh.mapper.AllRecordMapper">
+    <insert id="insertRecord" parameterType="allrecord">
+        insert into allrecord(bookId,username,lendDate,backDate)
+        values(#{bookId},#{username},#{lendDate},#{backDate})
+    </insert>
+
+    <select id="selectRecordByUsername" parameterType="string" resultType="allrecord">
+        select * from allrecord where username = #{username}
+    </select>
+
+    <delete id="deleteReocrd" parameterType="_int">
+        delete from allrecord where sernum = #{sernum}
+    </delete>
+
+    <select id="selectAllRecord" resultType="allrecord">
+        select * from allrecord
+    </select>
+
+</mapper>

@@ -3,6 +3,7 @@ package com.zjh.mapper;
 import com.zjh.pojo.Book;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +16,9 @@ import java.util.List;
 @Repository
 public interface BookMapper {
 
+    //查询有基本图书
+    @Select("SELECT COUNT(*) FROM book")
+    int selectCount();
     //查询所有图书
     List<Book> selectAllBook();
 

@@ -65,7 +65,7 @@
             <th>状态</th>
             <div th:switch="${book.getState()}">
                 <td th:case="1" style="color:green">在馆</td>
-                <td th:case="0" style="color:red">缺货</td>
+                <td th:case="0" style="color:red">已借出</td>
             </div>
         </tr>
     </table>

@@ -44,7 +44,8 @@
             <th>图书号</th>
             <th>读者卡号</th>
             <th>借出日期</th>
-            <th>归还日期</th>
+            <th>最晚归还日期</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -54,6 +55,7 @@
             <td th:text="${record.getUsername()}"></td>
             <td th:text="${#dates.format(record.getLendDate(),'yyyy-MM-dd')}"></td>
             <td th:text="${#dates.format(record.getBackDate(),'yyyy-MM-dd')}"></td>
+            <td><a th:href="@{'/admin/record/backBook/' + ${record.getSernum()} + '/' + ${record.getBookId()} + '/' + ${session.username}}" class="btn btn-outline-info" id="1">确认还书</a></td>
         </tr>
         </tbody>
     </table>

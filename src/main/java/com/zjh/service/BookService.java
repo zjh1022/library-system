@@ -2,6 +2,7 @@ package com.zjh.service;
 
 import com.zjh.pojo.Book;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,4 +30,7 @@ public interface BookService {
 
     //搜索图书
     List<Book> selectLike(String keyword);
+
+    //查询有几本图书
+    int selectCount();
 }

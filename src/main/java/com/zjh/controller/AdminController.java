@@ -1,5 +1,7 @@
 package com.zjh.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zjh.pojo.Book;
 import com.zjh.pojo.Reader;
 import com.zjh.pojo.Record;
@@ -14,10 +16,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,8 +40,11 @@ public class AdminController {
 
     //图书管理
     @RequestMapping("/admin/book/books")
-    public String books(Model model) {
+    public String books(Model model,@RequestParam(defaultValue = "1") Integer pageNum) {
+        PageHelper.startPage(pageNum,5);
         List<Book> books = bookService.selectAllBook();
+        PageInfo<Book> pageInfo = new PageInfo<>(books);
+        model.addAttribute("pageInfo",pageInfo);
         model.addAttribute("books", books);
         return "admin/books";
     }
@@ -148,20 +150,33 @@ public class AdminController {
 
     //搜索图书信息
     @RequestMapping("/admin/book/searchBook")
-    public String searchBook(String keyword, Model model) {
+    public String searchBook(String keyword, Model model,@RequestParam(defaultValue = "1") Integer pageNum) {
+        PageHelper.startPage(pageNum,5);
         String key = "%" + keyword + "%";
         List<Book> books = bookService.selectLike(key);
+        PageInfo<Book> pageInfo = new PageInfo<>(books);
+        model.addAttribute("pageInfo",pageInfo);
         model.addAttribute("books", books);
         return "admin/books";
     }
 
     //搜索读者信息
-    @RequestMapping("/reader/book/searchReader")
-    public String searchReader(String keyword, Model model) {
+    @RequestMapping("/admin/book/searchReader")
+    public String searchReader( String keyword, Model model) {
         String key = "%" + keyword + "%";
         List<Reader> readers = readerService.selectLike(key);
         model.addAttribute("readers", readers);
         return "admin/readers";
+    }
+
+    //还书
+    @RequestMapping("/admin/record/backBook/{sernum}/{bookId}/{username}")
+    public String backBook(@PathVariable("sernum") int sernum,@PathVariable("bookId") int bookId,@PathVariable("username") String username){
+        Book book = bookService.selectBookById(bookId);
+        book.setState(1);//状态设置为1，即为还书
+        bookService.updateBook(book);
+        recordService.delectRecord(sernum);  //删除借阅记录
+        return "admin/records";
     }
 
     //到达修改密码页面
