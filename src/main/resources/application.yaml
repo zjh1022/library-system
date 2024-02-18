@@ -3,7 +3,7 @@ spring:
     druid:
       url: jdbc:mysql://localhost:3306/library?useSSL=false
       username: root
-      password: xiaoHAI123.
+      password: #你的密码
       driver-class-name: com.mysql.jdbc.Driver
 
   thymeleaf:
